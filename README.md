@@ -23,6 +23,8 @@ stc.workflow({
 
 ## options
 
+支持的压缩选项如下：
+
 ```js
 {
   'trim': false,  //去除首尾空白字符 
