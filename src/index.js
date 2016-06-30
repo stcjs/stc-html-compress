@@ -1,3 +1,5 @@
+'use strict';
+
 import Plugin from 'stc-plugin';
 import {extend, md5} from 'stc-helper';
 import uglify from 'stc-uglify';
