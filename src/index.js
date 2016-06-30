@@ -83,7 +83,7 @@ export default class HtmlCompressPlugin extends Plugin {
    * use cluster
    */
   static cluster(){
-    return false;
+    return true;
   }
   /**
    * use cache
