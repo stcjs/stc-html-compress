@@ -18,18 +18,15 @@ export default class HtmlCompressPlugin extends Plugin {
 
     let tokens = await this.getAst();
     
-    
     let instance = new this.stc.flkit.HtmlCompress(tokens, options);
     instance.jsTplHandle = this.compressJsTpl.bind(this);
     instance.cssHandle = this.compressInlineCss.bind(this);
     let result = instance.run(true);
     
-
     //compress inline script
     if(options.compressInlineJs !== false){
       result = await this.compressInlineJs(result);
     }
-    
 
     return result;
   }
@@ -54,7 +51,7 @@ export default class HtmlCompressPlugin extends Plugin {
       let {start, content} = token.ext;
       if(start.ext.isScript && !start.ext.isExternal){
         let value = content.value;
-        let filename = '/template/' + md5(value) + '.js';
+        let filename = '/stc/' + md5(value) + '.js';
         let file = await this.addFile(filename, value, true);
         let compressRet = await this.invokePlugin(uglify, file);
         content.value = compressRet.content;
