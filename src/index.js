@@ -18,9 +18,9 @@ export default class HtmlCompressPlugin extends Plugin {
       options.jsTplTypeList = this.config.jsTpl.type;
     }
 
-    let tokens = await this.getAst();
+    let ast = await this.getAst();
     
-    let instance = new this.stc.flkit.HtmlCompress(tokens, options);
+    let instance = new this.stc.flkit.getFlkitInstance('HtmlCompress', ast, options);
     instance.jsTplHandle = this.compressJsTpl.bind(this);
     instance.cssHandle = this.compressInlineCss.bind(this);
     let result = instance.run(true);
