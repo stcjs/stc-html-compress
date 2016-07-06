@@ -50,7 +50,7 @@ export default class HtmlCompressPlugin extends Plugin {
         return token;
       }
       let {start, content} = token.ext;
-      if(start.ext.isScript && !start.ext.isExternal){
+      if(start.ext.isScript && !start.ext.isExternal && !content.ext.hasTpl){
         let value = content.value;
         let filename = '/stc/' + md5(value) + '.js';
         let file = await this.addFile(filename, value, true);
