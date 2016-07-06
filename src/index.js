@@ -50,8 +50,8 @@ export default class HtmlCompressPlugin extends Plugin {
         return token;
       }
       let {start, content} = token.ext;
-      if(start.ext.isScript && !start.ext.isExternal && !content.ext.hasTpl){
-        let value = content.value;
+      let value = content.value.trim();
+      if(start.ext.isScript && !start.ext.isExternal && !content.ext.hasTpl && value){
         let filename = '/stc/' + md5(value) + '.js';
         let file = await this.addFile(filename, value, true);
         let compressRet = await this.invokePlugin(uglify, file);
