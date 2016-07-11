@@ -80,6 +80,12 @@ export default class HtmlCompressPlugin extends Plugin {
     this.setAst(tokens);
   }
   /**
+   * default include
+   */
+  static include(){
+    return {type: 'tpl'};
+  }
+  /**
    * use cluster
    */
   static cluster(){
