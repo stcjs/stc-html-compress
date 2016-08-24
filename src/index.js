@@ -13,7 +13,7 @@ export default class HtmlCompressPlugin extends Plugin {
    */
   async run(){
     if(!options){
-      options = {...this.config.tpl, ...this.options};
+      options = extend({}, this.config.tpl, this.options);
       options.jsTplTypeList = this.config.jsTpl.type;
     }
 
@@ -66,7 +66,7 @@ export default class HtmlCompressPlugin extends Plugin {
    */
   compressJsTpl(token){
     if(!tplOptions){
-      tplOptions = {...this.config.jsTpl, ...this.options};
+      tplOptions = extend({}, this.config.jsTpl, this.options);
     }
     let value = token.ext.tokens || token.value;
     let instance = this.stc.flkit.getFlkitInstance('HtmlCompress', value, tplOptions);
@@ -89,7 +89,7 @@ export default class HtmlCompressPlugin extends Plugin {
    * use cluster
    */
   static cluster(){
-    return true;
+    return false;
   }
   /**
    * use cache
