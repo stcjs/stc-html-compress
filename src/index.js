@@ -3,6 +3,7 @@
 import Plugin from 'stc-plugin';
 import {extend, md5} from 'stc-helper';
 import uglify from 'stc-uglify';
+import path from 'path';
 
 let options = null;
 let tplOptions = null;
@@ -57,7 +58,7 @@ export default class HtmlCompressPlugin extends Plugin {
       let {start, content} = token.ext;
       let value = content.value.trim();
       if(start.ext.isScript && !start.ext.isExternal && !content.ext.hasTpl && value){
-        let filename = '/stc/' + md5(value) + '.js';
+        let filename = path.join('/stc', md5(value) + '.js');
         let file = await this.addFile(filename, value, true);
         let compressRet = await this.invokePlugin(uglify, file);
         content.value = compressRet.content;
